@@ -7,13 +7,30 @@ function sum(array) {
   return sum;
 }
 
+try {
 let res = sum(null);
 console.log(res);
-
+} catch (e) {
+  if (e instanceof TypeError) {
+    console.error(e.message);
+  }
+}
 // 2.
 // tests
-sayName("Alex");
-sayName(1);
+function sayName(name) {
+  if (typeof name !== "string") {
+    throw new TypeError("Invalid name! Must be a string!");
+  }
+
+  console.log(name);
+}
+
+try {
+  sayName("Alex");
+  sayName(1);
+} catch (e) {
+  console.error(e.name + ": " + e.message);
+}
 // Your code here
 
 // 3.
@@ -23,4 +40,10 @@ function greet(greeting) {
   }
 
   console.log(greeting);
+}
+
+try {
+  greet(null);
+} catch (e) {
+  console.log("Hello World!");
 }
